@@ -4,7 +4,7 @@
     </template>
 
     <template v-slot:default>
-      Home Page
+      <Catalog></Catalog>
     </template>
   </default-layout>
 </template>
@@ -12,10 +12,12 @@
 <script>
 // @ is an alias to /src
 import DefaultLayout from "../components/layouts/DefaultLayout.vue";
+import Catalog from "../components/catalog/Catalog.vue";
 export default {
   name: "Home",
   components: {
     DefaultLayout,
+    Catalog
   }
 };
 </script>
