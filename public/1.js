@@ -84,9 +84,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       categories: [],
-      products: [] // total:0,
-      // cat_id:1,     
-
+      products: []
     };
   },
   components: {
@@ -107,7 +105,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://127.0.0.1:8000/api/categories").then(function (response) {
-                  _this.categories = response.data.data; // console.log('categories: ', this.categories);
+                  _this.categories = response.data.data;
                 });
 
               case 2:
@@ -128,7 +126,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://127.0.0.1:8000/api/products").then(function (response) {
-                  _this2.products = response.data.data; // console.log('products: ', this.products);
+                  _this2.products = response.data.data;
                 });
 
               case 2:
