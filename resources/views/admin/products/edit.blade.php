@@ -37,6 +37,13 @@
                 {{ $product->description }}</textarea>
                 <span class="help-block">{{ __('description Field Required') }}</span>
             </div>
+
+            <div class="form-group">
+                <label for="recommended">{{ __('Is recommended?') }}</label>
+                <input class="form-control" type="checkbox" name="recommended" id="recommended" {{ ($product->recommended == 1)?'checked':'' }}>
+                <span class="help-block">{{ __('Recommended Product') }}</span>
+            </div>
+            
             <div class="form-group">
 
             <div class="mx-auto" style="width: 30%;"><img src="{{ $product->cover }}"></div>

@@ -11,7 +11,8 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::withCount('products')->get();
+        $categories = $categories->where('products_count', '>', 0);
         return new CategoryResource($categories);
     }
 }

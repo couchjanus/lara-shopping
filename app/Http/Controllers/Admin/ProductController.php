@@ -46,7 +46,8 @@ class ProductController extends Controller
             'price'=>$request->price,
             'description'=>$request->description, 
             'category_id'=>$request->category_id, 
-            'status'=>$request->status, 
+            'status'=>$request->status,
+            'recommended'=> ($request->recommended =='on')?1:0, 
             'cover' => $this->uploadImage($request->file("cover")),
         ]);
 
@@ -101,6 +102,7 @@ class ProductController extends Controller
             'description'=>$request->description,
             'category_id'=>$request->category_id,
             'status'=>$request->status,
+            'recommended'=> ($request->recommended =='on')?1:0,
         ];
 
         if($request->file("cover")) {

@@ -3,12 +3,12 @@
     <div class="category-tab">
         <div class="col-sm-12">
             <ul class="nav nav-tabs">
-                <li v-for="category in categories" :key="category.id" class="nav-item">
-                    <a :href="`#Tab_00${category.id}`" data-toggle="tab"> {{ category.name }}</a>
+                <li v-for="category in categories" :key="category.id" class="nav-item" :class="{ 'active': category.id === category_id }">
+                    <a :href="`#Tab_00${category.id}`" data-toggle="tab"  @click="getCategoryId(category.id)"> {{ category.name }}</a>
                 </li>
             </ul>
         </div>
-        <tab-content :products="products"></tab-content>
+        <tab-content :products="products" :category="category_id"></tab-content>
     </div>
     <!--/category-tab-->  
 </template>
@@ -23,6 +23,7 @@ export default {
     return {
       categories: [],
       products: [],
+      category_id:1,
     };
   },
   components: {
@@ -30,7 +31,7 @@ export default {
   },
   created() {
     this.loadCategories();
-    this.loadProducts();
+    this.loadProducts(this.category_id);
   },
   methods: {
     async loadCategories() {
@@ -41,13 +42,18 @@ export default {
             this.categories = response.data.data;
           })
     },
-    async loadProducts() {
+    async loadProducts(id) {
       await axios
-        .get(`http://127.0.0.1:8000/api/products`)
+        .get(`http://127.0.0.1:8000/api/products/${id}`)
         .then((response) => {
           this.products = response.data.data;
         });
     },
+    getCategoryId(id){
+      this.category_id=id;
+      //console.log(this.category_id);
+      this.loadProducts(this.category_id);
+    }
   }
 };
 </script>

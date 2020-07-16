@@ -40,6 +40,11 @@
                 <span class="help-block">{{ __('description Field Required') }}</span>
             </div>
             <div class="form-group">
+                <label for="recommended">{{ __('Is recommended?') }}</label>
+                <input class="form-control" type="checkbox" name="recommended" id="recommended">
+                <span class="help-block">{{ __('Recommended Product') }}</span>
+            </div>
+            <div class="form-group">
               <div class="uploader">
                 <input id="file-upload" type="file" name="cover" accept="image/*" onchange="readURL(this);">
                 <label for="file-upload" id="file-drag">

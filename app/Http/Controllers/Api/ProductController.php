@@ -14,4 +14,19 @@ class ProductController extends Controller
         $products = Product::all();
         return new ProductResource($products);
     }
+
+    public function getByCategory($id)
+    {
+        $products = Product::where('category_id', $id)->get();
+        return new ProductResource($products);
+    }
+
+    // slider
+    public function slider()
+    {
+        $products = Product::where('recommended', true)->get();
+        return new ProductResource($products);
+    }
+
+    
 }
