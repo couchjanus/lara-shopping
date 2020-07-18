@@ -74,20 +74,23 @@ export default {
 
     totalPages: {
       type: Number,
-      required: true },
+      required: true 
+    },
 
     total: {
       type: Number,
-      required: true },
+      required: true 
+    },
 
     perPage: {
       type: Number,
-      required: true },
+      required: true 
+    },
 
     currentPage: {
       type: Number,
-      required: true } },
-
+      required: true } 
+    },
 
   computed: {
     startPage() {
@@ -100,7 +103,6 @@ export default {
       }
 
       return this.currentPage - 1;
-
     },
  
     endPage() {
@@ -126,7 +128,8 @@ export default {
  
     isInLastPage() {
       return this.currentPage === this.totalPages;
-    } },
+    } 
+  },
 
   methods: {
     onClickFirstPage() {

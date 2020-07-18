@@ -1,18 +1,17 @@
 <template>
   <!--tab-content-->
   <div class="tab-content">
-    <div class="tab-pane fade active in show" :id="`Tab_00${category}`">
+    <div class="tab-pane fade active in show" :id="`Tab_00${category_id}`">
       
       <div class="row pb-2">
         <SingleProduct
           v-for="product in displayedProducts"
           :key="product.id"
           :product_data="product"
+          @addToCart="addToCart"
         >
         </SingleProduct>
       </div>
-      
-      <!-- <Pagination :total_pages="11" :total="113" :per_page="10" :current_page="currentPage" /> -->
       
       <nav aria-label="Page navigation">
         <ul class="pagination">
@@ -30,17 +29,18 @@
 
 <script>
 import SingleProduct from "./SingleProduct";
-// import Pagination from "../shared/Pagination";
+import {mapActions, mapGetters} from 'vuex';
+
 export default {
   name: `TabContent`,
 
   props: {
-      products: null,
-      category:null
+      items: null,
+      category_id:null
   },
   components: {
     SingleProduct,
-    // Pagination
+    
   },
   data() {
     return {
@@ -55,27 +55,37 @@ export default {
     setPages() {
       this.pages = [];
       this.page = 1;
-      let numberOfPages = Math.ceil(this.products.length / this.perPage);
+      let numberOfPages = Math.ceil(this.items.length / this.perPage);
       for (let index = 1; index <= numberOfPages; index++) {
         this.pages.push(index);
       }
     },
-    paginate(products) {
+    paginate(items) {
       let page = this.page;
       let perPage = this.perPage;
       let from = page * perPage - perPage;
       let to = page * perPage;
-      return products.slice(from, to);
+      return items.slice(from, to);
     },
+    ...mapActions([
+        'ADD_TO_CART'
+      ]),
+      addToCart(data) {
+        this.ADD_TO_CART(data);
+      },
 
   },
+  
   computed: {
+     ...mapGetters([
+        'CART',
+      ]),
     displayedProducts() {
-      return this.paginate(this.products);
+      return this.paginate(this.items);
     }
   },
   watch: {
-    products() {
+    items() {
       this.setPages();
     }
   },

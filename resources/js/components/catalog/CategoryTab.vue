@@ -8,21 +8,22 @@
                 </li>
             </ul>
         </div>
-        <tab-content :products="products" :category="category_id"></tab-content>
+        <tab-content :items='items' :category_id="category_id"></tab-content>
     </div>
     <!--/category-tab-->  
 </template>
 
 <script>
-import axios from "axios";
+
 import TabContent from "./TabContent";
+import {mapActions, mapGetters} from 'vuex';
 
 export default {
   name: `CategoryTab`,
   data() {
     return {
       categories: [],
-      products: [],
+      items: [],
       category_id:1,
     };
   },
@@ -30,30 +31,35 @@ export default {
     TabContent,
   },
   created() {
-    this.loadCategories();
-    this.loadProducts(this.category_id);
+    this.GET_CATEGORIES_API()
+      .then(() => {
+        this.categories = this.CATEGORIES;
+    });
+  },
+  mounted() {
+    this.GET_PRODUCTS_BY_CATEGORY_API(this.category_id)
+      .then(() => {
+        this.items = this.PRODUCTS;
+    });
+  },
+  computed: {
+     ...mapGetters([
+        'PRODUCTS',
+        'CATEGORIES'
+      ]),
   },
   methods: {
-    async loadCategories() {
-      await axios.get(
-        `http://127.0.0.1:8000/api/categories`
-      )
-        .then(response => {
-            this.categories = response.data.data;
-          })
-    },
-    async loadProducts(id) {
-      await axios
-        .get(`http://127.0.0.1:8000/api/products/${id}`)
-        .then((response) => {
-          this.products = response.data.data;
-        });
-    },
     getCategoryId(id){
       this.category_id=id;
-      //console.log(this.category_id);
-      this.loadProducts(this.category_id);
-    }
+      this.GET_PRODUCTS_BY_CATEGORY_API(this.category_id)
+      .then(() => {
+        this.items = this.PRODUCTS;
+      });
+    },
+    ...mapActions([
+        'GET_PRODUCTS_BY_CATEGORY_API',
+        'GET_CATEGORIES_API'
+    ]),
   }
 };
 </script>

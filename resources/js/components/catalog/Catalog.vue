@@ -5,6 +5,7 @@
         <!--NewProduct-->
         <div class="col-sm-12 padding-right">
             <!--RetailSale-->
+            <RetailSale></RetailSale>
             <!--category-tab-->
             <category-tab></category-tab>
         </div>
@@ -14,7 +15,7 @@
 </template>
 
 <script>
-// import RetailSale from "./RetailSale";
+import RetailSale from "./RetailSale";
 import CategoryTab from "./CategoryTab";
 // import NewProduct from "./NewProduct";
 
@@ -26,7 +27,7 @@ export default {
     },
     components: {
         // NewProduct,
-        // RetailSale,
+        RetailSale,
         CategoryTab,
     }
 };

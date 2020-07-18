@@ -8,7 +8,7 @@
             <p>{{product_data.name}}</p>
             
             <button
-                class="btn btn-default add-to-cart"
+                class="btn btn-default add-to-cart" @click="addToCart"
             ><i class="fa fa-shopping-cart"></i> Add to cart
             </button>
           </div>
@@ -22,7 +22,7 @@ export default {
   name: `SingleProduct`,
   data() {
     return {
-      title: "Single Product",
+     
     };
   },
   props: {
@@ -39,7 +39,9 @@ export default {
       this.$set(this.product_data, 'quantity', 1)
   },
   methods: {
-     
+    addToCart() {
+      this.$emit('addToCart', this.product_data);
+    }
   },
 };
 </script>

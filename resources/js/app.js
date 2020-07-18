@@ -10,6 +10,7 @@ window.Vue = require('vue');
 
 import App from "./App.vue";
 import router from "./router";
+import store from "./store";
 
 /**
  * The following block of code may be used to automatically register your
@@ -36,5 +37,6 @@ import router from "./router";
 
 const app = new Vue({
     router,
+    store,
     render: h => h(App)
 }).$mount("#app");
