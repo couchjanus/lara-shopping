@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"login":"login"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -54203,6 +54203,26 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 var app = new Vue({
   router: _router__WEBPACK_IMPORTED_MODULE_1__["default"],
   store: _store__WEBPACK_IMPORTED_MODULE_2__["default"],
+  created: function created() {
+    var _this = this;
+
+    var userInfo = localStorage.getItem('user');
+
+    if (userInfo) {
+      var userData = JSON.parse(userInfo);
+      this.$store.commit('SET_USER_DATA', userData);
+    }
+
+    axios.interceptors.response.use(function (response) {
+      return response;
+    }, function (error) {
+      if (error.response.status === 401) {
+        _this.$store.dispatch('LOGOUT');
+      }
+
+      return Promise.reject(error);
+    });
+  },
   render: function render(h) {
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
   }
@@ -54271,11 +54291,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Home = function Home() {
-  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
 };
 
 var About = function About() {
   return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../views/About.vue */ "./resources/js/views/About.vue"));
+};
+
+var Profile = function Profile() {
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ../views/Profile.vue */ "./resources/js/views/Profile.vue"));
+};
+
+var Register = function Register() {
+  return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../views/Register.vue */ "./resources/js/views/Register.vue"));
 };
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -54284,17 +54312,43 @@ var routes = [{
   name: 'Home',
   component: Home
 }, {
-  path: '/home',
-  component: Home
+  path: '/profile',
+  name: 'Profile',
+  component: Profile
 }, {
   path: "/about",
   name: "About",
   component: About
+}, {
+  path: "/register",
+  name: "Register",
+  component: Register,
+  meta: {
+    guestOnly: true
+  }
+}, {
+  path: '/login',
+  name: 'Login',
+  component: function component() {
+    return __webpack_require__.e(/*! import() | login */ "login").then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
+  }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: "history",
   base: process.env.BASE_URL,
   routes: routes
+});
+router.beforeEach(function (to, from, next) {
+  var loggedIn = localStorage.getItem('user');
+
+  if (to.matched.some(function (record) {
+    return record.meta.auth;
+  }) && !loggedIn) {
+    next('/login');
+    return;
+  }
+
+  next();
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
@@ -54331,10 +54385,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
+axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.baseURL = 'http://127.0.0.1:8000/api';
 /* harmony default export */ __webpack_exports__["default"] = ({
   GET_RECOMMENDED_PRODUCTS_API: function GET_RECOMMENDED_PRODUCTS_API(_ref) {
     var commit = _ref.commit;
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/recommended").then(function (products) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/recommended").then(function (products) {
       commit('SET_RETAILS_TO_STATE', products.data.data);
       return products;
     })["catch"](function (error) {
@@ -54344,7 +54399,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   GET_PRODUCTS_BY_CATEGORY_API: function GET_PRODUCTS_BY_CATEGORY_API(_ref2, id) {
     var commit = _ref2.commit;
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/products/".concat(id)).then(function (products) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/products/".concat(id)).then(function (products) {
       commit('SET_PRODUCTS_TO_STATE', products.data.data);
       return products;
     })["catch"](function (error) {
@@ -54354,12 +54409,37 @@ __webpack_require__.r(__webpack_exports__);
   },
   GET_CATEGORIES_API: function GET_CATEGORIES_API(_ref3) {
     var commit = _ref3.commit;
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/categories").then(function (categories) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/categories").then(function (categories) {
       commit('SET_CATEGORIES_TO_STATE', categories.data.data);
       return categories;
     })["catch"](function (error) {
       console.log(error);
       return error;
+    });
+  },
+  LOGIN: function LOGIN(_ref4, credentials) {
+    var commit = _ref4.commit;
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/login', credentials).then(function (_ref5) {
+      var data = _ref5.data;
+      commit('SET_USER_DATA', data);
+    });
+  },
+  LOGOUT: function LOGOUT(_ref6) {
+    var commit = _ref6.commit;
+    commit('CLEAR_USER_DATA');
+  },
+  REGISTER: function REGISTER(_ref7, data) {
+    var commit = _ref7.commit;
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/register", data).then(function (_ref8) {
+      var data = _ref8.data;
+      commit('SET_REGISTER_DATA', data);
+    });
+  },
+  AUTH: function AUTH(_ref9) {
+    var commit = _ref9.commit;
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/user").then(function (_ref10) {
+      var data = _ref10.data;
+      commit('SET_AUTH_USER', data);
     });
   }
 });
@@ -54387,6 +54467,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   CART: function CART(state) {
     return state.cart;
+  },
+  USER: function USER(state) {
+    return state.user;
+  },
+  IS_LOGGED: function IS_LOGGED(state) {
+    return !!state.user;
   }
 });
 
@@ -54429,7 +54515,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     products: [],
     categories: [],
     cart: [],
-    retails: []
+    retails: [],
+    user: null
   },
   mutations: _mutations_mutations__WEBPACK_IMPORTED_MODULE_4__["default"],
   actions: actions,
@@ -54448,6 +54535,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   SET_PRODUCTS_TO_STATE: function SET_PRODUCTS_TO_STATE(state, products) {
     state.products = products;
@@ -54475,6 +54565,22 @@ __webpack_require__.r(__webpack_exports__);
     } else {
       state.cart.push(product);
     }
+  },
+  SET_USER_DATA: function SET_USER_DATA(state, userData) {
+    state.user = userData;
+    localStorage.setItem('user', JSON.stringify(userData));
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common.Authorization = "Bearer ".concat(userData.token);
+  },
+  SET_REGISTER_DATA: function SET_REGISTER_DATA(state, userData) {
+    state.user = userData;
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common.Authorization = "Bearer ".concat(userData.token);
+  },
+  CLEAR_USER_DATA: function CLEAR_USER_DATA() {
+    localStorage.removeItem('user');
+    location.href = '/'; // location.reload()
+  },
+  SET_AUTH_USER: function SET_AUTH_USER(state, user) {
+    state.user = user;
   }
 });
 

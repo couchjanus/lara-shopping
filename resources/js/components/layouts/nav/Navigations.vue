@@ -27,7 +27,14 @@
       </ul>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link class="nav-link" to="/contact">Contact</router-link>
+          <router-link class="nav-link" to="/profile" v-if="IS_LOGGED">Profile</router-link>
+          <router-link class="nav-link" to="/login" v-else>Login</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link v-if="!IS_LOGGED" class="nav-item nav-link" :to="{ name: 'Register' }">Register</router-link>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" @click="logout()" v-if="IS_LOGGED">Logout</button>
         </li>
         <li class="nav-item dropdown">
           <a
@@ -65,14 +72,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: `Navigations`,
-  components: {},
-  data() {
-    return {};
+  computed: {
+    ...mapGetters([
+      'IS_LOGGED'
+    ])
   },
-  created() {},
+
+  methods: {
+    logout () {
+      this.$store.dispatch('LOGOUT')
+    }
+  }
 };
 </script>
-
-<style lang="scss"></style>

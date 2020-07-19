@@ -38,5 +38,21 @@ import store from "./store";
 const app = new Vue({
     router,
     store,
+    created () {
+        const userInfo = localStorage.getItem('user')
+        if (userInfo) {
+          const userData = JSON.parse(userInfo)
+          this.$store.commit('SET_USER_DATA', userData)
+        }
+        axios.interceptors.response.use(
+          response => response,
+          error => {
+            if (error.response.status === 401) {
+              this.$store.dispatch('LOGOUT')
+            }
+            return Promise.reject(error)
+          }
+        )
+    },
     render: h => h(App)
 }).$mount("#app");

@@ -10,5 +10,10 @@ export default  {
   },
   CART(state) {
     return state.cart;
-  }
+  },
+  USER(state) {
+    return state.user;
+  },
+  
+  IS_LOGGED: state => !!state.user
 }

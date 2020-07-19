@@ -53,10 +53,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _TabContent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TabContent */ "./resources/js/components/catalog/TabContent.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _TabContent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TabContent */ "./resources/js/components/catalog/TabContent.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -80,7 +78,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CategoryTab",
   data: function data() {
@@ -91,7 +88,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   components: {
-    TabContent: _TabContent__WEBPACK_IMPORTED_MODULE_1__["default"]
+    TabContent: _TabContent__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   created: function created() {
     var _this = this;
@@ -107,7 +104,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _this2.items = _this2.PRODUCTS;
     });
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['PRODUCTS', 'CATEGORIES'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['PRODUCTS', 'CATEGORIES'])),
   methods: _objectSpread({
     getCategoryId: function getCategoryId(id) {
       var _this3 = this;
@@ -117,7 +114,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this3.items = _this3.PRODUCTS;
       });
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(['GET_PRODUCTS_BY_CATEGORY_API', 'GET_CATEGORIES_API']))
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['GET_PRODUCTS_BY_CATEGORY_API', 'GET_CATEGORIES_API']))
 });
 
 /***/ }),
@@ -1328,11 +1325,11 @@ var render = function() {
                 style: _vm._style.list
               },
               [
-                _vm._l(_vm.items, function(item) {
+                _vm._l(_vm.items, function(item, i) {
                   return _c(
                     "div",
                     {
-                      key: item,
+                      key: i,
                       ref: "item",
                       refInFor: true,
                       staticClass: "vhl-item",

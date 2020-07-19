@@ -18,7 +18,7 @@
     <div class="vhl-container carousel-inner" :style="_style.container">
       <div class="vhl-container" :style="_style.container">      
         <div class="vhl-list" ref="list" :class="_options.list.class" :style="_style.list">
-          <div v-for="item in items" :key="item" ref="item" class="vhl-item" :class="_options.item.class" :style="_style.item">
+          <div v-for="(item, i) in items" :key="i" ref="item" class="vhl-item" :class="_options.item.class" :style="_style.item">
             <slot v-bind:item="item">{{item}}</slot>
           </div>
           <div :style="_style.tail">
