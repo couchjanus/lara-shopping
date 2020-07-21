@@ -25,37 +25,9 @@
           <router-link class="nav-link" to="/catalog">Catalog</router-link>
         </li>
       </ul>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link class="nav-link" to="/profile" v-if="IS_LOGGED">Profile</router-link>
-          <router-link class="nav-link" to="/login" v-else>Login</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link v-if="!IS_LOGGED" class="nav-item nav-link" :to="{ name: 'Register' }">Register</router-link>
-        </li>
-        <li class="nav-item">
-          <button class="nav-link" @click="logout()" v-if="IS_LOGGED">Logout</button>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-      </ul>
+
+
+
       <form class="form-inline my-2 my-lg-0">
         <input
           class="form-control mr-sm-2"
@@ -67,24 +39,65 @@
           Search
         </button>
       </form>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <router-link class="nav-link" to="/profile" v-if="IS_LOGGED">Profile</router-link>
+                <router-link class="nav-link" to="/login" v-else>Login</router-link>
+            </li>
+            <li class="nav-item">
+                <router-link v-if="!IS_LOGGED" class="nav-item nav-link" :to="{ name: 'Register' }">Register</router-link>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" @click="logout()" v-if="IS_LOGGED">Logout</button>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+              >
+                  Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+          </li>
+          <li class="nav-item">
+              <Cart></Cart>
+          </li>
+      </ul>
     </div>
   </nav>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-export default {
-  name: `Navigations`,
-  computed: {
-    ...mapGetters([
-      'IS_LOGGED'
-    ])
-  },
+import Cart from "../../cart/Cart";
 
-  methods: {
-    logout () {
-      this.$store.dispatch('LOGOUT')
+export default {
+    name: `Navigations`,
+    components: {
+        Cart,
+    },
+    computed: {
+        ...mapGetters([
+            // 'CART',
+            'IS_LOGGED'
+        ])
+    },
+
+    methods: {
+        logout () {
+          this.$store.dispatch('LOGOUT')
+        }
     }
-  }
 };
 </script>

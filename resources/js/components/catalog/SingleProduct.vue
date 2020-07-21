@@ -6,7 +6,7 @@
             <img :src="product_data.cover" :alt="product_data.name" />
             <h2>Price: ${{product_data.price}}</h2>
             <p>{{product_data.name}}</p>
-            
+
             <button
                 class="btn btn-default add-to-cart" @click="addToCart"
             ><i class="fa fa-shopping-cart"></i> Add to cart
@@ -22,7 +22,7 @@ export default {
   name: `SingleProduct`,
   data() {
     return {
-     
+
     };
   },
   props: {
@@ -36,7 +36,7 @@ export default {
   components: {
   },
   mounted() {
-      this.$set(this.product_data, 'quantity', 1)
+      this.$set(this.product_data, 'quantity', 1);
   },
   methods: {
     addToCart() {

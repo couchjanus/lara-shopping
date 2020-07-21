@@ -7,11 +7,11 @@ export default {
   SET_CATEGORIES_TO_STATE: (state, categories) => {
     state.categories = categories;
   },
-  
+
   SET_RETAILS_TO_STATE: (state, retails) => {
     state.retails = retails;
   },
-  
+
   SET_CART: (state, product) => {
     let isProductExists = false;
     if (state.cart.length) {
@@ -28,6 +28,17 @@ export default {
       state.cart.push(product)
     }
   },
+    REMOVE_FROM_CART: (state, index) => {
+        state.cart.splice(index, 1);
+    },
+    INCREMENT: (state, index) => {
+        state.cart[index].quantity++
+    },
+    DECREMENT: (state, index) => {
+        if (state.cart[index].quantity > 1) {
+            state.cart[index].quantity--
+        }
+    },
 
   SET_USER_DATA (state, userData) {
     state.user = userData

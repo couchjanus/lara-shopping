@@ -54368,6 +54368,18 @@ __webpack_require__.r(__webpack_exports__);
   ADD_TO_CART: function ADD_TO_CART(_ref, product) {
     var commit = _ref.commit;
     commit('SET_CART', product);
+  },
+  INCREMENT_CART_ITEM: function INCREMENT_CART_ITEM(_ref2, index) {
+    var commit = _ref2.commit;
+    commit('INCREMENT', index);
+  },
+  DECREMENT_CART_ITEM: function DECREMENT_CART_ITEM(_ref3, index) {
+    var commit = _ref3.commit;
+    commit('DECREMENT', index);
+  },
+  DELETE_FROM_CART: function DELETE_FROM_CART(_ref4, index) {
+    var commit = _ref4.commit;
+    commit('REMOVE_FROM_CART', index);
   }
 });
 
@@ -54564,6 +54576,17 @@ __webpack_require__.r(__webpack_exports__);
       }
     } else {
       state.cart.push(product);
+    }
+  },
+  REMOVE_FROM_CART: function REMOVE_FROM_CART(state, index) {
+    state.cart.splice(index, 1);
+  },
+  INCREMENT: function INCREMENT(state, index) {
+    state.cart[index].quantity++;
+  },
+  DECREMENT: function DECREMENT(state, index) {
+    if (state.cart[index].quantity > 1) {
+      state.cart[index].quantity--;
     }
   },
   SET_USER_DATA: function SET_USER_DATA(state, userData) {

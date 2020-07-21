@@ -54,7 +54,7 @@ a#scrollUp {
   & i {
     font-size: 30px;
   }
-  
+
 }
 
 //Header CSS
@@ -273,22 +273,22 @@ a#scrollUp {
   background-color: #fd9a16;
 }
 
-/* Set the border color */ 
-          
-.custom-toggler.navbar-toggler { 
-    border-color: rgba(240, 120, 16, 0.9); 
-    &:focus { 
-      outline: none;
-      border-color: rgb(255, 140, 66); 
-  }
-} 
+/* Set the border color */
 
-/* Setting the stroke to #fd9a16 using rgb values #fd9a16 */ 
-  
-.custom-toggler .navbar-toggler-icon { 
-    background-image: url( 
-"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(250, 128, 16, 0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"); 
-} 
+.custom-toggler.navbar-toggler {
+    border-color: rgba(240, 120, 16, 0.9);
+    &:focus {
+      outline: none;
+      border-color: rgb(255, 140, 66);
+  }
+}
+
+/* Setting the stroke to #fd9a16 using rgb values #fd9a16 */
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url(
+"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(250, 128, 16, 0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
 
 .nav.navbar-nav > li:hover > ul.sub-menu {
   display: block;
@@ -381,7 +381,7 @@ ul.sub-menu {
     & span {
       color: #fe980f;
     }
-    
+
   }
   & p {
     color: #b3b3ad;
@@ -480,7 +480,7 @@ ul.sub-menu {
     border-top: 1px solid #ffffff;
     padding-top: 15px;
   }
-  
+
 }
 
 .single-widget h2 {
@@ -607,7 +607,7 @@ img.cover {
   &:hover {
     cursor: pointer;
   }
- 
+
 }
 
 .carousel-indicators li:hover, .carousel-indicators li:active, .carousel-indicators li:focus{
@@ -931,7 +931,7 @@ h2.title {
     text-align: center;
     width: 100%;
   }
-  
+
   & .add-to-cart {
     background: #fff;
     border: 0 none;
@@ -1243,7 +1243,7 @@ h2.title {
     font-family: "BYekan", sans-serif;
     margin-bottom: 5px;
   }
-  
+
   & span {
     display: inline-block;
     margin-bottom: 5px;
@@ -1843,7 +1843,7 @@ textarea {
       font-size: 18px;
       font-family: "BYekan", sans-serif;
       font-weight: normal;
-      
+
       & a {
         color: #fe980f;
         font-size: 18px;
@@ -2343,7 +2343,7 @@ textarea {
     font-weight: 700;
     margin-top: 21px;
   }
-  
+
   & form input {
     border: 1px solid #f7f7f0;
     color: #adb2b2;
@@ -2503,7 +2503,7 @@ textarea {
   align-items: center;
   justify-content: center;
   border-radius: 24px;
-  
+
   background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   z-index: 2;
@@ -2578,7 +2578,7 @@ textarea {
 }
 
 
-// 
+//
 
 .login {
   width: 400px;
@@ -2602,7 +2602,7 @@ textarea {
     margin-top: 0;
     margin-bottom: 0;
     padding: 12px;
-    
+
   }
   & input {
     box-sizing: border-box;
@@ -2655,4 +2655,55 @@ textarea {
 .login-container {
   background: #ebebeb;
   padding: 12px;
+}
+
+//
+
+.cart {
+    position: fixed;
+    right: 0em;
+    top: 0em;
+    margin-bottom: 100px;
+    //text-align: right;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    z-index: 1;
+
+    &__total {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        padding: 2em 3em;
+        display: flex;
+        justify-content: center;
+        background: green;
+        color: #ffffff;
+        font-size: 20px;
+    }
+
+    .total__name {
+        margin-right: 2em;
+    }
+}
+
+.cart-item {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 8px 0 #e0e0e0;
+    padding: 2em;
+    margin-bottom: 2em;
+    &__image {
+        max-width: 50px;
+    }
+
+    .quantity__btn {
+        cursor: pointer;
+    }
+
+    .quantity__tools {
+        user-select: none;
+    }
 }
