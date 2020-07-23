@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
+// Route::middleware('auth:api')->get('/admin', function (Request $request) {
+//     return $request->admin();
 // });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

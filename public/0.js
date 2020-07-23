@@ -1115,7 +1115,7 @@ var render = function() {
                     )
                   : _c(
                       "router-link",
-                      { staticClass: "nav-link", attrs: { to: "/login" } },
+                      { staticClass: "nav-link", attrs: { to: "/signin" } },
                       [_vm._v("Login")]
                     )
               ],

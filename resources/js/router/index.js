@@ -31,7 +31,7 @@ const routes = [
     meta: { guestOnly: true }
   },
   {
-    path: '/login',
+    path: '/signin',
     name: 'Login',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
   }
@@ -47,7 +47,7 @@ router.beforeEach((to, from, next) => {
   const loggedIn = localStorage.getItem('user')
 
   if (to.matched.some(record => record.meta.auth) && !loggedIn) {
-    next('/login')
+    next('/signin')
     return
   }
   next()

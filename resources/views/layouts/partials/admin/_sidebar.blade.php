@@ -19,7 +19,7 @@
             </li>
             
             <li class="nav-item">
-                <a href="{{ route("admin.products.index") }}" class="nav-link {{ request()->is('admin/posts') || request()->is('admin/posts/*') ? 'active' : '' }}">
+                <a href="{{ route("admin.products.index") }}" class="nav-link {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active' : '' }}">
                     <i class="fa-fw fas fa-briefcase nav-icon">
 
                     </i>
@@ -36,7 +36,7 @@
                 </a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ route('admin.permissions.index') }}" class="nav-link">
                             <i class="fa-fw fas fa-unlock-alt nav-icon">
 
                             </i>
@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ route('admin.roles.index') }}" class="nav-link">
                             <i class="fa-fw fas fa-briefcase nav-icon">
 
                             </i>
@@ -52,7 +52,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.users.index') }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
                             <i class="fa-fw fas fa-user nav-icon">
 
                             </i>

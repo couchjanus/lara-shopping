@@ -54327,7 +54327,7 @@ var routes = [{
     guestOnly: true
   }
 }, {
-  path: '/login',
+  path: '/signin',
   name: 'Login',
   component: function component() {
     return __webpack_require__.e(/*! import() | login */ "login").then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
@@ -54344,7 +54344,7 @@ router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.auth;
   }) && !loggedIn) {
-    next('/login');
+    next('/signin');
     return;
   }
 

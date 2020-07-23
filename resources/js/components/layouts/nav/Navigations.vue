@@ -42,7 +42,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <router-link class="nav-link" to="/profile" v-if="IS_LOGGED">Profile</router-link>
-                <router-link class="nav-link" to="/login" v-else>Login</router-link>
+                <router-link class="nav-link" to="/signin" v-else>Login</router-link>
             </li>
             <li class="nav-item">
                 <router-link v-if="!IS_LOGGED" class="nav-item nav-link" :to="{ name: 'Register' }">Register</router-link>

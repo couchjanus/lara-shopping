@@ -11175,3 +11175,84 @@ table.dataTable thead .sorting_desc {
   cursor: pointer;
 }
 
+.login {
+  width: 400px;
+  margin: 16px auto;
+  font-size: 16px;
+}
+
+.login .login-header {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.login .login-header {
+  background: #fe980f;
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.login p {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 12px;
+}
+
+.login input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 16px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95em;
+}
+
+.login input[type=email],
+.login input[type=password] {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+}
+
+.login input[type=email]:focus,
+.login input[type=password]:focus {
+  border-color: #888;
+}
+
+.login input[type=submit] {
+  background: #fe980f;
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.login input[type=submit]:hover {
+  background: #ff660f;
+}
+
+.login input[type=submit]:focus {
+  border-color: #ff0;
+}
+
+/* The triangle form is achieved by a CSS hack */
+
+.login-triangle {
+  width: 0;
+  margin-right: auto;
+  margin-left: auto;
+  border: 12px solid transparent;
+  border-bottom-color: #fe980f;
+}
+
+.login-container {
+  background: #ebebeb;
+  padding: 12px;
+}
+
