@@ -16,7 +16,9 @@
         "laravel/framework": "^7.0",
         "laravel/sanctum": "^2.4",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.1"
+        "laravel/ui": "^2.1",
+        "nicolaslopezj/searchable": "^1.13",
+        "spatie/flysystem-dropbox": "^1.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

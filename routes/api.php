@@ -38,10 +38,12 @@ Route::post('/login', function(Request $request) {
 });
 
 Route::group(['namespace' => 'Api',], function() {
-    Route::get('/products', 'ProductController@index');
-    Route::get('/sliders', 'ProductController@slider');
-    Route::get('/recommended', 'ProductController@slider');
-    Route::get('/categories', 'CategoryController@index');
-    Route::get('/products/{id}', 'ProductController@getByCategory');
-    Route::post('/register', 'RegisterController@register');
+    Route::get('products', 'ProductController@index');
+    Route::get('sliders', 'ProductController@slider');
+    Route::get('recommended', 'ProductController@slider');
+    Route::get('categories', 'CategoryController@index');
+    Route::get('products/{id}', 'ProductController@getByCategory');
+    Route::get('product/{id}', 'ProductController@show')->name('api.product.show');
+    Route::get('search/{query}', 'ProductController@search')->name('api.search.result');
+    Route::post('register', 'RegisterController@register');
 });

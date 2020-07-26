@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/dropbox', 'DropboxController@index')->name('dropbox.index');
+Route::get('/dropbox/{picture}', 'DropboxController@view')->name('dropbox.view');
+// Route::get('/unduh/{berkas}', 'DropboxController@download')->name('dropbox.download');
+// Route::get('/delete/{berkas}', 'DropboxController@delete')->name('dropbox.delete');
+Route::post('/dropbox', 'DropboxController@store')->name('dropbox.store');
+
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

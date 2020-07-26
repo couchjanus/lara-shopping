@@ -27,18 +27,8 @@
       </ul>
 
 
-
-      <form class="form-inline my-2 my-lg-0">
-        <input
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Search
-        </button>
-      </form>
+      <Search></Search>
+      
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <router-link class="nav-link" to="/profile" v-if="IS_LOGGED">Profile</router-link>
@@ -81,11 +71,13 @@
 <script>
 import { mapGetters } from 'vuex';
 import Cart from "../../cart/Cart";
+import Search from "../../search/Search";
 
 export default {
     name: `Navigations`,
     components: {
         Cart,
+        Search
     },
     computed: {
         ...mapGetters([

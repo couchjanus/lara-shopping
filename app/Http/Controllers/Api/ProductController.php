@@ -21,6 +21,12 @@ class ProductController extends Controller
         return new ProductResource($products);
     }
 
+    public function show($id)
+    {
+        $product = Product::whereId($id)->firstOrFail();
+        return new ProductResource($product);
+    }
+
     // slider
     public function slider()
     {
@@ -28,5 +34,9 @@ class ProductController extends Controller
         return new ProductResource($products);
     }
 
-    
+    public function search($query)
+    {
+        $products = Product::search($query)->get();
+        return new ProductResource($products);
+    }   
 }

@@ -3,12 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\SoftDeletes;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Product extends Model
 {
-    use SoftDeletes;
-
+    // use SoftDeletes;
+    use SearchableTrait;
     protected $fillable = [
         'name', 'description', 'category_id', 'price', 'status', 'cover', 'recommended'
     ];
@@ -28,4 +29,10 @@ class Product extends Model
 
     //     return end($parts);
     // }
+
+    protected $searchable = [
+        'columns' => [
+            'products.name' => 10,
+        ],
+    ];
 }
